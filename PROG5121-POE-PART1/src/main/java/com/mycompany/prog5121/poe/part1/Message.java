@@ -70,6 +70,9 @@ public class Message {
      * Generates a random 10-digit number for the unique message ID.
      * @return A 10-digit string representing the unique message ID.
      */
+    
+    // Code Snippet
+    // By GeeksforGeeks, 24 April 2025, Generating random numbers in java, Available at :https://www.geeksforgeeks.org/generating-random-numbers-in-java/ ,[Accessed 24 May 2025]
     private String generateUniqueMessageID() {
         Random random = new Random();
         StringBuilder sb = new StringBuilder();
@@ -82,22 +85,16 @@ public class Message {
     /**
      * This method ensures that the message ID is not more than ten characters.
      * Since we generate a 10-character ID, this effectively checks if it's 10.
-     * @return True if the uniqueMessageID is 10 characters long, false otherwise.
+     * 
      */
     public boolean checkMessageID() {
-        return this.uniqueMessageID != null && this.uniqueMessageID.length() == 10;
+     return this.uniqueMessageID != null && this.uniqueMessageID.length() == 10;
     }
 
     /**
      * This method ensures that the recipient cell number is no more than ten characters long
      * and starts with an international code (e.g., "+").
-     * Returns 1 for success, 0 for failure.
-     *
-     * Based on test data "+27718693002" which is 12 characters, the "no more than ten characters"
-     * likely refers to the local part or is a general guideline. The regex accommodates common international numbers.
-     *
-     * @param recipientNumber The cell number to validate.
-     * @return 1 if valid, 0 if invalid.
+     
      */
     public int checkRecipientCell(String recipientNumber) {
         // Regex for a common international phone number format:
@@ -108,17 +105,18 @@ public class Message {
         Matcher matcher = pattern.matcher(recipientNumber);
 
         if (matcher.matches()) {
-            return 1; // Valid
+            return 1; 
         }
-        return 0; // Invalid
+        return 0; 
     }
 
     /**
      * This method creates and returns the Message Hash.
      * Format: first two numbers of the message ID:0:number of the message:first and last words in the message (ALL CAPS).
-     * Example: 00:0:HITTHANKS
-     * @return The generated message hash.
+     * 
      */
+    
+    // 
     public String createMessageHash() {
         if (uniqueMessageID == null || messageContent == null || messageContent.trim().isEmpty()) {
             return "ERROR: Missing data for hash generation.";
@@ -139,7 +137,7 @@ public class Message {
             }
         }
 
-        this.messageHash = String.format("%s:0:%d:%s%s",
+        this.messageHash = String.format("%s:%d:%s%s",
                 idPrefix,
                 numMessagesSent,
                 firstWord.toUpperCase(),
@@ -200,13 +198,10 @@ public class Message {
                 uniqueMessageID, messageHash, recipient, messageContent);
     }
 
-    /**
-     * This method is for storing messages in a JSON file.
-     * It writes a list of Message objects to "messages.json".
-     * Code for JSON serialization using Jackson library.
-     *
-     * @param messages A list of Message objects to be stored.
-     */
+    
+    
+    
+    // ChatGpt, 24 May 2025, Availible at :https://chatgpt.com/c/6831cb31-b69c-8001-b132-0c430c976c51 
     public static void storeMessagesToJson(List<Message> messages) {
         ObjectMapper mapper = new ObjectMapper();
         File file = new File("messages.json");

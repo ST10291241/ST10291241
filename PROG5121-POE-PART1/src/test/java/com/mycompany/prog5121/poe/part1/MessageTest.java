@@ -5,6 +5,7 @@
 package com.mycompany.prog5121.poe.part1;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -71,13 +72,21 @@ public class MessageTest {
     @Test
     public void testGetRecipient() {
         System.out.println("getRecipient");
-        Message instance = null;
-        String expResult = "";
-        String result = instance.getRecipient();
+        String recipientNumber = "+27718693002";
+        String recipientNumber2 = "08575975889";
+
+        Message instance = new Message(2);
+        
+        int expResult = 1;
+        int expResult2 = 0;
+        int result = instance.checkRecipientCell(recipientNumber);
+        int result2 = instance.checkRecipientCell(recipientNumber2);
+
+       
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+        assertEquals(expResult2,result2);
+    }       
+    
 
     /**
      * Test of getMessageContent method, of class Message.
@@ -160,19 +169,29 @@ public class MessageTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of checkRecipientCell method, of class Message.
-     */
+    
     @Test
     public void testCheckRecipientCell() {
         System.out.println("checkRecipientCell");
-        String recipientNumber = "";
-        Message instance = null;
-        int expResult = 0;
+        String recipientNumber = "+27718693002";
+        String recipientNumber2 = "08575975889";
+
+        Message instance = new Message(2);
+        
+        int expResult = 1;
+        int expResult2 = 0;
         int result = instance.checkRecipientCell(recipientNumber);
+        int result2 = instance.checkRecipientCell(recipientNumber2);
+
+        if(result ==1){
         assertEquals(expResult, result);
+        JOptionPane.showMessageDialog(null, "Cell phone number successfully captured", "Recipient CellPhone Number", JOptionPane.INFORMATION_MESSAGE);
+        }else if(result2 ==0){
+                    assertEquals(expResult2, result2);
+                 JOptionPane.showMessageDialog(null, "Cell phone number is incorrectly formatted or does not contain an international code. Please correct the number and try again", "Recipient CellPhone Number", JOptionPane.ERROR_MESSAGE);
+   
+        }
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

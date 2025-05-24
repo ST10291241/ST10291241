@@ -17,8 +17,8 @@ public class PROG5121POEPART1 {
     private static int totalMessagesSentCounter = 0; // Tracks successfully sent/stored messages
 
     public static void main(String[] args) {
-        //  loginClass obj1 = new loginClass();
-        //  obj1.RegisterUser();
+         loginClass obj1 = new loginClass();
+         obj1.RegisterUser();
         boolean loggedIn = true; // Assume logged in successfully for now, as per rubric point 1.
         boolean running = true;
 
@@ -153,7 +153,19 @@ public class PROG5121POEPART1 {
         // Ask user what to do with the message (Send, Discard, Store) using JOptionPane
         String action = currentMessage.SentMessage();
 
-        switch (action) {
+        if(action.equals("SEND")){
+        sentMessages.add(currentMessage);
+                JOptionPane.showMessageDialog(null, currentMessage.printMessages(), "Message Details", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Message successfully sent.", "Status", JOptionPane.INFORMATION_MESSAGE);
+        }else if (action.equals("DISCARD")){
+            totalMessagesSentCounter--; // Decrement as it's not a valid 'sent' or 'stored' message for the count
+                JOptionPane.showMessageDialog(null, "Press 0 to delete message. (Message discarded)", "Discarded", JOptionPane.INFORMATION_MESSAGE);
+        }else if(action.equals("STORE")){
+            sentMessages.add(currentMessage); // Add to the list to be stored
+                Message.storeMessagesToJson(sentMessages); // Use the static method
+                JOptionPane.showMessageDialog(null, "Message successfully stored.", "Status", JOptionPane.INFORMATION_MESSAGE);
+        }
+       /* switch (action) {
             case "SEND":
                 sentMessages.add(currentMessage);
                 JOptionPane.showMessageDialog(null, currentMessage.printMessages(), "Message Details", JOptionPane.INFORMATION_MESSAGE);
@@ -168,8 +180,8 @@ public class PROG5121POEPART1 {
                 Message.storeMessagesToJson(sentMessages); // Use the static method
                 JOptionPane.showMessageDialog(null, "Message successfully stored.", "Status", JOptionPane.INFORMATION_MESSAGE);
                 break;
-        }
+        }*/
 
-        JOptionPane.showMessageDialog(null, "Total messages sent/stored so far: " + totalMessagesSentCounter, "Message Count", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Total messages sent so far is: " + totalMessagesSentCounter, "Message Count", JOptionPane.INFORMATION_MESSAGE);
     }
 }

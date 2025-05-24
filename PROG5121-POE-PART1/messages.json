@@ -1,7 +1,7 @@
 [ {
-  "uniqueMessageID" : "9152782263",
+  "uniqueMessageID" : "0407029484",
   "numMessagesSent" : 1,
-  "recipient" : "+27711436434",
-  "messageContent" : "This is the Message",
-  "messageHash" : "91:0:1:THISMESSAGE"
+  "recipient" : "+2771436434",
+  "messageContent" : "This is the first Message",
+  "messageHash" : "04:0:1:THISMESSAGE"
 } ]
